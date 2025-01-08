@@ -1,1 +1,152 @@
 Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.
+Object-oriented in javascript:--
+A Class-Based language (like JAVA and C++) have a class construct which defines all the properties that characterize a set of objects
+A Prototype-Based language has a notion of an object which serves as a template from which we get the properties of a new object.
+JavaScript by design is not a class-based object-oriented language but a prototype-based language.
+Classes were introduced after ES6 in JS
+
+1. Classes
+Classes are templates for creating objects. They define properties and methods that an object can have.
+
+Example:
+
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const person1 = new Person("Puskar", 25);
+person1.greet(); // Output: Hello, my name is Puskar
+
+
+2. Objects
+Objects are instances of classes or standalone data structures that store key-value pairs.
+
+Example:
+const car = {
+  make: "Toyota",
+  model: "Corolla",
+  start() {
+    console.log("Car is starting...");
+  }
+};
+
+car.start(); // Output: Car is starting...
+
+3. Encapsulation
+Encapsulation bundles data and methods operating on that data together. In JavaScript, you can achieve encapsulation by using private fields (#) or closures.
+
+Example (Private Fields):
+
+class BankAccount {
+  #balance;
+
+  constructor(initialBalance) {
+    this.#balance = initialBalance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+const account = new BankAccount(1000);
+account.deposit(500);
+console.log(account.getBalance()); // Output: 1500
+
+
+4. Inheritance
+Inheritance allows one class to derive properties and methods from another class using the extends keyword.
+
+Example:
+
+class Animal {
+  speak() {
+    console.log("Animal speaks");
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log("Dog barks");
+  }
+}
+
+const dog = new Dog();
+dog.speak(); // Output: Dog barks
+
+5. Polymorphism
+Polymorphism allows methods in derived classes to override methods in their base classes.
+
+Example:
+
+class Shape {
+  draw() {
+    console.log("Drawing a shape");
+  }
+}
+
+class Circle extends Shape {
+  draw() {
+    console.log("Drawing a circle");
+  }
+}
+
+const shapes = [new Shape(), new Circle()];
+shapes.forEach(shape => shape.draw());
+// Output:
+// Drawing a shape
+// Drawing a circle
+
+6. Abstraction
+Abstraction hides implementation details and shows only essential features. In JavaScript, abstraction can be achieved through abstract classes or interfaces (though interfaces are not natively supported, you can use TypeScript for this).
+
+Example (Using Abstract Class):
+
+class Vehicle {
+  drive() {
+    throw new Error("Drive method must be implemented");
+  }
+}
+
+class Car extends Vehicle {
+  drive() {
+    console.log("Driving a car");
+  }
+}
+
+const car = new Car();
+car.drive(); // Output: Driving a car
+
+7. Prototype and Prototype-based Inheritance
+JavaScript uses prototype-based inheritance, where objects can inherit directly from other objects.
+
+Example:
+
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a noise`);
+};
+
+const dog = new Animal("Dog");
+dog.speak(); // Output: Dog makes a noise
+
+
+Key Benefits of OOP in JavaScript
+Modularity: Helps organize code into reusable pieces.
+Code Reusability: Inheritance and prototypes promote reuse.
+Maintainability: Encapsulation simplifies debugging and updating.
+Scalability: Polymorphism makes extending functionality easier.
