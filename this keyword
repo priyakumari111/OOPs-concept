@@ -1,0 +1,143 @@
+The this keyword in JavaScript is a powerful and dynamic concept used to refer to the current execution context of a function or object. Its value depends on how and where it is used, making it crucial to understand the scenarios in which this is applied.
+
+1. Global Context
+In the global execution context (outside any function), this refers to the global object:
+
+In a browser, the global object is window.
+In Node.js, it is global.
+Example:
+
+javascript
+
+console.log(this); // In a browser, this will log the `window` object
+
+2. Inside an Object
+When used inside an object’s method, this refers to the object that owns the method.
+
+Example:
+
+javascript
+
+const person = {
+  name: "Puskar",
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+person.greet(); // Output: Hello, my name is Puskar
+
+3. In a Function
+In a regular function (not part of an object), this depends on how the function is called:
+
+In strict mode, this is undefined.
+In non-strict mode, this refers to the global object.
+Example:
+
+javascript
+
+function showThis() {
+  console.log(this);
+}
+
+// Non-strict mode
+showThis(); // Output: global object (window in a browser)
+
+// Strict mode
+"use strict";
+function showThisStrict() {
+  console.log(this);
+}
+showThisStrict(); // Output: undefined
+
+
+4. Arrow Functions
+Arrow functions do not have their own this. Instead, they inherit this from the surrounding (lexical) scope.
+
+Example:
+
+javascript
+
+const person = {
+  name: "Puskar",
+  greet: () => {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+};
+
+person.greet(); // Output: Hello, my name is undefined
+Here, this is not the person object but the global object because arrow functions do not bind their own this.
+
+5. Inside a Class
+In a class, this refers to the instance of the class.
+
+Example:
+
+javascript
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const person1 = new Person("Puskar");
+person1.greet(); // Output: Hello, my name is Puskar
+6. In Event Handlers
+In traditional functions, this refers to the DOM element that received the event.
+With arrow functions, this refers to the lexical scope.
+Example:
+
+javascript
+
+const button = document.querySelector("button");
+
+// Traditional function
+button.addEventListener("click", function () {
+  console.log(this); // Output: the button element
+});
+
+// Arrow function
+button.addEventListener("click", () => {
+  console.log(this); // Output: global object or undefined (depends on strict mode)
+});
+7. Using bind, call, and apply
+The value of this can be explicitly set using bind, call, or apply.
+
+call: Invokes the function immediately with a specified this value.
+apply: Same as call but takes arguments as an array.
+bind: Returns a new function with a bound this.
+Example:
+
+javascript
+
+function sayHello() {
+  console.log(`Hello, ${this.name}`);
+}
+
+const person = { name: "Puskar" };
+
+sayHello.call(person); // Output: Hello, Puskar
+sayHello.apply(person); // Output: Hello, Puskar
+
+const boundFunction = sayHello.bind(person);
+boundFunction(); // Output: Hello, Puskar
+
+
+Key Takeaways:
+this is context-sensitive.
+Arrow functions do not have their own this.
+Use bind, call, or apply to explicitly control this.
+In strict mode, this inside standalone functions is undefined.
+
+
+ES6 CLASSES:--
+
+JS is not inherently a class-based language, but ES6 provides us with “class-like” syntax which emulates the idea of classes in JavaScript
+Under the hood, it is doing the same thing we were doing with Constructor functions.
+Classes are blueprints that describe a particular object.
+A class is declared with a reserved keyword - class, followed by the class name in Pascal Case (same as constructors)
