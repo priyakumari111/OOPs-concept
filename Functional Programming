@@ -1,0 +1,2 @@
+Functional programming (often abbreviated FP) is the process of building software by composing pure functions, avoiding shared state, mutable data, and side-effects.
+Functional programming is declarative (What needs to be done) rather than imperative (how it needs to be done, example: OOPS) and the state flows through pure functions.
