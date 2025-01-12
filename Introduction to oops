@@ -150,3 +150,6 @@ Modularity: Helps organize code into reusable pieces.
 Code Reusability: Inheritance and prototypes promote reuse.
 Maintainability: Encapsulation simplifies debugging and updating.
 Scalability: Polymorphism makes extending functionality easier.
+
+
+
